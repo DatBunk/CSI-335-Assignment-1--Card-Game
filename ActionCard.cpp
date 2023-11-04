@@ -1,10 +1,15 @@
+/*
+Ildefonso Marrero
+Last Modified: 11/4/2023
+*/
 #include "ActionCard.hpp"
 
 /**
  @post: Construct a new Action Card object
 **/
 ActionCard::ActionCard(){
-
+    CardType action_tmp = ACTION_CARD;
+    setType(action_tmp);
 }
 
 /**
@@ -16,8 +21,16 @@ ActionCard::ActionCard(){
     * REVERSE HAND : reverse the order of the cards in the hand
     * SWAP HAND WITH OPPONENT : swap the hand with the opponent
 */
-virtual bool isPlayable() override{
-    
+bool ActionCard::isPlayable(){
+    bool can_play = false;
+    if(getDrawn() == true){
+        if(getInstruction() != ""){
+            can_play = true;
+        }
+        
+    }
+
+    return can_play;
 }
 
 /**
@@ -29,6 +42,17 @@ virtual bool isPlayable() override{
     * 
     * Note: For [ImageData]: If there is no image data, print "No image data" instead
 */
-virtual void Print() const override{
+void ActionCard::Print() const{
+    std::cout << "Type: " << getType() << std::endl;
+    std::cout << "Instruction: " << getInstruction() << std::endl;
+    std::cout << "Card: " << std::endl;
+    if(getImageData() == nullptr){
+        std::cout << "No image data" << std::endl;
+    }else{
+        for(int i = 0; i < 5; i++){
+            std::cout << getImageData()[i] << " ";
+        }
+        std::cout << std::endl;
+    }
     
 }

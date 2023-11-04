@@ -1,3 +1,7 @@
+/*
+Ildefonso Marrero
+Last Modified: 11/4/2023
+*/
 #include "Hand.hpp"
 
 // Big Five and constructor
@@ -14,7 +18,6 @@ Hand::Hand(){
 Hand::~Hand(){
     cards_.clear();
     delete &cards_;
-    ???????????????????
 }
 
 /**
@@ -32,7 +35,7 @@ Hand::Hand(const Hand& other){
 */
 Hand& Hand::operator=(const Hand& other){
     cards_ = other.cards_;
-    return cards_;
+    return *this;
 }
 
 /**
@@ -52,7 +55,7 @@ Hand::Hand(Hand&& other){
 Hand& Hand::operator=(Hand&& other){
     cards_ = other.cards_;
     other.cards_.clear();
-    return cards_;
+    return *this;
 }
 
 /**

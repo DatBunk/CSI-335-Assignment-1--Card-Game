@@ -1,7 +1,6 @@
 /*
 Ildefonso Marrero
-Last Modified: 11/3/2023
-Player.cpp implements the Player class.
+Last Modified: 11/4/2023
 */
 
 #include "Player.hpp"
@@ -17,7 +16,9 @@ Player::Player(){
  @post: Destroy the Player object
 **/
 Player::~Player(){
-    ???????????????????
+    delete actiondeck_;
+    delete pointdeck_;
+    delete opponent_;
 }
 
 /**
