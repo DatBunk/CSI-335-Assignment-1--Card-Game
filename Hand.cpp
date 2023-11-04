@@ -9,15 +9,14 @@ Last Modified: 11/4/2023
  @post: Construct a new Hand object
 **/
 Hand::Hand(){
-    cards_ = std::deque<PointCard>();
+    
 }
 
 /** 
 @post: Destroy the Hand object
 **/
 Hand::~Hand(){
-    cards_.clear();
-    delete &cards_;
+    
 }
 
 /**
