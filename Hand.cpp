@@ -95,8 +95,10 @@ void Hand::Reverse(){
 int Hand::PlayCard(){
     if(cards_.empty()){
         throw std::runtime_error("Hand is empty");
-    }
-    else{
+    }else if(cards_.front().isPlayable() == false){
+        cards_.pop_front();
+        throw std::runtime_error("Card is not playable");
+    }else{
         std::string points = cards_.front().getInstruction();
         cards_.pop_front();
         int tmp_points = stoi(points);
