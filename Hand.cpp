@@ -98,8 +98,9 @@ int Hand::PlayCard(){
         throw std::runtime_error("Hand is empty");
     }
     else{
-        int points = cards_.front().getPoints();
+        std::string points = cards_.front().getInstruction();
         cards_.pop_front();
-        return points;
+        int tmp_points = stoi(points);
+        return tmp_points;
     }
 }
