@@ -34,9 +34,11 @@ void Deck<CardType>::AddCard(const CardType& card){
  * @return the right hand value of type CardType 
 */
 CardType&& Deck<CardType>::Draw(){
-    CardType card = cards_.back();
-    cards_.pop_back();
-    return std::move(card);
+    if(IsEmpty() == false){
+        CardType card = cards_.back();
+        cards_.pop_back();
+        return std::move(card);
+    }
 }
 
 /**

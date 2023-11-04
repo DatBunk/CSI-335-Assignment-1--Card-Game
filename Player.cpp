@@ -2,7 +2,6 @@
 Ildefonso Marrero
 Last Modified: 11/4/2023
 */
-
 #include "Player.hpp"
 
 /**
