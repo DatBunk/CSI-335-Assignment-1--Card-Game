@@ -42,8 +42,7 @@ Hand& Hand::operator=(const Hand& other){
  * @param: other Hand object
 */
 Hand::Hand(Hand&& other){
-    cards_ = other.cards_;
-    other.cards_.clear();
+    cards_ = std::move(other.cards_);
 }
 
 /**
@@ -52,8 +51,7 @@ Hand::Hand(Hand&& other){
  * @return this Hand
 */
 Hand& Hand::operator=(Hand&& other){
-    cards_ = other.cards_;
-    other.cards_.clear();
+    cards_ = std::move(other.cards_);
     return *this;
 }
 
@@ -93,15 +91,15 @@ void Hand::Reverse(){
 * @return the points earned from playing the card
 */
 int Hand::PlayCard(){
-    if(cards_.empty()){
-        throw std::runtime_error("Hand is empty");
-    }else if(cards_.front().isPlayable() == false){
-        cards_.pop_front();
-        throw std::runtime_error("Card is not playable");
-    }else{
+    if(isEmpty() == false){
         std::string points = cards_.front().getInstruction();
+        if(points == ""){
+            return 0;
+        }
         cards_.pop_front();
         int tmp_points = stoi(points);
         return tmp_points;
+    }else{
+        throw std::runtime_error("Hand is empty");
     }
 }
