@@ -96,10 +96,10 @@ int Hand::PlayCard(){
         if(points == ""){
             return 0;
         }
-        cards_.pop_front();
         int tmp_points = stoi(points);
+        cards_.pop_front();
         return tmp_points;
     }else{
-        throw std::runtime_error("Hand is empty");
+        throw -1;
     }
 }
