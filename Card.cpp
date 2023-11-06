@@ -51,6 +51,23 @@ Card& Card::operator=(const Card& rhs){
 }
 
 /**
+ @param rvalue reference to a Card object
+ @return this Card object
+**/
+Card& Card::operator=(Card&& rhs){
+    cardType_ = rhs.cardType_;
+    instruction_ = rhs.instruction_;
+    bitmap_ = rhs.bitmap_;
+    drawn_ = rhs.drawn_;
+    rhs.cardType_ = CardType::POINT_CARD;
+    rhs.instruction_ = "";
+    rhs.bitmap_ = nullptr;
+    rhs.drawn_ = false;
+
+    return *this;
+}
+
+/**
 @post: Construct a new Card object  
 **/
 Card::Card(){
