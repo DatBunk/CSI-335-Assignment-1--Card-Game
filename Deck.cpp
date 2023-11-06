@@ -35,7 +35,7 @@ void Deck<CardType>::AddCard(const CardType& card){
  * @return the right hand value of type CardType 
 */
 template <typename CardType>
-CardType Deck<CardType>::Draw(){
+CardType&& Deck<CardType>::Draw(){
     if(IsEmpty() == false){
         CardType card = cards_.back();
         cards_.pop_back();
