@@ -24,6 +24,7 @@ Deck<CardType>::~Deck(){
  * @post: Add a Card to the Deck
  * @param: const reference to CardType card
 */
+template <typename CardType>
 void Deck<CardType>::AddCard(const CardType& card){
     cards_.push_back(card);
 }
@@ -33,7 +34,8 @@ void Deck<CardType>::AddCard(const CardType& card){
  * @pre: the deck is not empty
  * @return the right hand value of type CardType 
 */
-CardType&& Deck<CardType>::Draw(){
+template <typename CardType>
+CardType Deck<CardType>::Draw(){
     if(IsEmpty() == false){
         CardType card = cards_.back();
         cards_.pop_back();
@@ -44,6 +46,7 @@ CardType&& Deck<CardType>::Draw(){
 /**
  * @return if the deck is empty 
 */
+template <typename CardType>
 bool Deck<CardType>::IsEmpty() const{
     return cards_.empty();
 }
@@ -55,6 +58,7 @@ bool Deck<CardType>::IsEmpty() const{
  * https://en.cppreference.com/w/cpp/algorithm/random_shuffle
  * https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine
 */
+template <typename CardType>
 void Deck<CardType>::Shuffle(){
     std::mt19937 rng(2028358904);
     std::shuffle(cards_.begin(), cards_.end(), rng);
@@ -63,6 +67,7 @@ void Deck<CardType>::Shuffle(){
 /**
  * @return the size of the deck 
 */
+template <typename CardType>
 int Deck<CardType>::getSize() const{
     return cards_.size();
 }
@@ -70,6 +75,7 @@ int Deck<CardType>::getSize() const{
 /**
  * @return the vector of cards in the deck 
 */
+template <typename CardType>
 std::vector<CardType> Deck<CardType>::getDeck() const{
     return cards_;
 }
