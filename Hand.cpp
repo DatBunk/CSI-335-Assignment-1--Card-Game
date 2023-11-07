@@ -24,7 +24,7 @@ Hand::~Hand(){
  * @param: other Hand object
 */
 Hand::Hand(const Hand& other){
-    cards_ = other.cards_;
+    cards_ = other.cards_; //copy the cards
 }
 
 /**
@@ -33,8 +33,8 @@ Hand::Hand(const Hand& other){
  * @return this Hand 
 */
 Hand& Hand::operator=(const Hand& other){
-    cards_ = other.cards_;
-    return *this;
+    cards_ = other.cards_; //copy the cards
+    return *this; //return this object
 }
 
 /**
@@ -42,7 +42,7 @@ Hand& Hand::operator=(const Hand& other){
  * @param: other Hand object
 */
 Hand::Hand(Hand&& other){
-    cards_ = std::move(other.cards_);
+    cards_ = std::move(other.cards_); //move the cards
 }
 
 /**
@@ -51,15 +51,15 @@ Hand::Hand(Hand&& other){
  * @return this Hand
 */
 Hand& Hand::operator=(Hand&& other){
-    cards_ = std::move(other.cards_);
-    return *this;
+    cards_ = std::move(other.cards_); //move the cards
+    return *this; //return this object
 }
 
 /**
  * @return Hand
 */
 const std::deque<PointCard>& Hand::getCards() const{
-    return cards_;
+    return cards_; //return the cards
 }
 
 /**
@@ -67,21 +67,21 @@ const std::deque<PointCard>& Hand::getCards() const{
  * @param PointCard object
 */
 void Hand::addCard(PointCard&& card){
-    cards_.push_back(card);
+    cards_.push_back(card); //add the card to the back of the deque
 }
 
 /**
  * @return true if hand is empty, false otherwise
 */
 bool Hand::isEmpty() const{
-    return cards_.empty();
+    return cards_.empty(); //return if the deque is empty
 }
 
 /**
  * @post: Reverse the hand
 */
 void Hand::Reverse(){
-    std::reverse(cards_.begin(), cards_.end());
+    std::reverse(cards_.begin(), cards_.end()); //reverse the deque
 }
 
 /**
@@ -92,14 +92,14 @@ void Hand::Reverse(){
 */
 int Hand::PlayCard(){
     if(isEmpty() == false){
-        std::string points = cards_.front().getInstruction();
+        std::string points = cards_.front().getInstruction(); //get the instruction
         if(points == ""){
-            return 0;
+            return 0; //return 0 if the instruction is empty
         }
-        int tmp_points = stoi(points);
-        cards_.pop_front();
-        return tmp_points;
+        int tmp_points = stoi(points); //convert the instruction to an int
+        cards_.pop_front(); //remove the card from the front of the deque
+        return tmp_points; //return the points
     }else{
-        throw -1;
+        throw -1; //throw an exception
     }
 }

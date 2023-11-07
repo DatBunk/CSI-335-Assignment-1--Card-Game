@@ -9,7 +9,7 @@ Last Modified: 11/4/2023
     @post: Destroy the Card object
 **/
 Card::~Card(){
-    delete bitmap_;
+    delete bitmap_; //delete the bitmap
 }
 
 /**
@@ -17,24 +17,24 @@ Card::~Card(){
  @param: const reference to a CardType object
 **/
 Card::Card(const Card& rhs){
-    cardType_ = rhs.cardType_;
-    instruction_ = rhs.instruction_;
-    bitmap_ = rhs.bitmap_;
-    drawn_ = rhs.drawn_;
+    cardType_ = rhs.cardType_; //set the card type
+    instruction_ = rhs.instruction_; //set the instruction
+    bitmap_ = rhs.bitmap_; //set the bitmap
+    drawn_ = rhs.drawn_; //set the drawn status
 }
 
 /**
  @param: rvalue reference to a Card object
 **/
 Card::Card(Card&& rhs){
-    cardType_ = rhs.cardType_;
-    instruction_ = rhs.instruction_;
-    bitmap_ = rhs.bitmap_;
-    drawn_ = rhs.drawn_;
-    rhs.cardType_ = CardType::POINT_CARD;
-    rhs.instruction_ = "";
-    rhs.bitmap_ = nullptr;
-    rhs.drawn_ = false;
+    cardType_ = rhs.cardType_; //set the card type
+    instruction_ = rhs.instruction_; //set the instruction
+    bitmap_ = rhs.bitmap_; //set the bitmap
+    drawn_ = rhs.drawn_; //set the drawn status
+    rhs.cardType_ = CardType::POINT_CARD; //set the card type to point card
+    rhs.instruction_ = ""; //set the instruction to empty
+    rhs.bitmap_ = nullptr; //set the bitmap to null
+    rhs.drawn_ = false; //set the drawn status to false
 }
 
 /**
@@ -42,12 +42,12 @@ Card::Card(Card&& rhs){
  @return this Card object
 **/
 Card& Card::operator=(const Card& rhs){
-    cardType_ = rhs.cardType_;
-    instruction_ = rhs.instruction_;
-    bitmap_ = rhs.bitmap_;
-    drawn_ = rhs.drawn_;
+    cardType_ = rhs.cardType_; //set the card type
+    instruction_ = rhs.instruction_; //set the instruction
+    bitmap_ = rhs.bitmap_; //set the bitmap
+    drawn_ = rhs.drawn_; //set the drawn status
 
-    return *this;
+    return *this; //return this object
 }
 
 /**
@@ -55,26 +55,26 @@ Card& Card::operator=(const Card& rhs){
  @return this Card object
 **/
 Card& Card::operator=(Card&& rhs){
-    cardType_ = rhs.cardType_;
-    instruction_ = rhs.instruction_;
-    bitmap_ = rhs.bitmap_;
-    drawn_ = rhs.drawn_;
-    rhs.cardType_ = CardType::POINT_CARD;
-    rhs.instruction_ = "";
-    rhs.bitmap_ = nullptr;
-    rhs.drawn_ = false;
+    cardType_ = rhs.cardType_; //set the card type
+    instruction_ = rhs.instruction_; //set the instruction
+    bitmap_ = rhs.bitmap_; //set the bitmap
+    drawn_ = rhs.drawn_; //set the drawn status
+    rhs.cardType_ = CardType::POINT_CARD; //set the card type to point card
+    rhs.instruction_ = ""; //set the instruction to empty
+    rhs.bitmap_ = nullptr; //set the bitmap to null
+    rhs.drawn_ = false; //set the drawn status to false
 
-    return *this;
+    return *this; //return this object
 }
 
 /**
 @post: Construct a new Card object  
 **/
 Card::Card(){
-    cardType_ = CardType::POINT_CARD;
-    instruction_ = "";
-    bitmap_ = nullptr;
-    drawn_ = false;
+    cardType_ = CardType::POINT_CARD; //set the card type to point card
+    instruction_ = ""; //set the instruction to empty
+    bitmap_ = nullptr; //set the bitmap to null
+    drawn_ = false; //set the drawn status to false
 }
 
 /**
@@ -82,10 +82,10 @@ Card::Card(){
 */
 std::string Card::getType() const{
     if(cardType_ == CardType::POINT_CARD){
-        return "POINT_CARD";
+        return "POINT_CARD"; //return the string representation of the point card type
     }
     else{
-        return "ACTION_CARD";
+        return "ACTION_CARD"; //return the string representation of the action card type
     }
 }
 
@@ -93,14 +93,14 @@ std::string Card::getType() const{
 * @post: set the card type 
 **/
 void Card::setType(const CardType& type){
-    cardType_ = type;
+    cardType_ = type; //set the card type
 }
 
 /**
 * @return the string representation of the card instruction
 **/
 const std::string& Card::getInstruction() const{
-    return instruction_;
+    return instruction_; //return the instruction
 }
 
 /**
@@ -108,14 +108,14 @@ const std::string& Card::getInstruction() const{
  * @param const reference to a string object
  * */
 void Card::setInstruction(const std::string& instruction){
-    instruction_ = instruction;
+    instruction_ = instruction; //set the instruction
 }
 
 /**
 * @return the image data
 */
 const int* Card::getImageData() const{
-    return bitmap_;
+    return bitmap_; //return the image data
 }
 
 /**
@@ -123,14 +123,14 @@ const int* Card::getImageData() const{
  * @param pointer to an array of integers
 */
 void Card::setImageData(int* data){
-    bitmap_ = data;
+    bitmap_ = data; //set the image data
 }
 
 /**
  * @return the drawn status of the card
  * */
 bool Card::getDrawn() const{
-    return drawn_;
+    return drawn_; //return the drawn status
 }
 
 /**
@@ -138,6 +138,6 @@ bool Card::getDrawn() const{
  * @param: const reference to a boolean
  * */
 void Card::setDrawn(const bool& drawn){
-    drawn_ = drawn;
+    drawn_ = drawn; //set the drawn status
 }
 

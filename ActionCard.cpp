@@ -8,8 +8,8 @@ Last Modified: 11/4/2023
  @post: Construct a new Action Card object
 **/
 ActionCard::ActionCard(){
-    CardType action_tmp = ACTION_CARD;
-    setType(action_tmp);
+    CardType action_tmp = ACTION_CARD; //set the type to action card
+    setType(action_tmp); //set the type
 }
 
 /**
@@ -22,7 +22,7 @@ ActionCard::ActionCard(){
     * SWAP HAND WITH OPPONENT : swap the hand with the opponent
 */
 bool ActionCard::isPlayable(){
-    bool can_play = false;
+    bool can_play = false; //initialize the bool to false
     if(getDrawn() == true){
         if(getInstruction() != ""){
             can_play = true;
@@ -30,7 +30,7 @@ bool ActionCard::isPlayable(){
         
     }
 
-    return can_play;
+    return can_play; //return the bool
 }
 
 /**
@@ -49,8 +49,9 @@ void ActionCard::Print() const{
     if(getImageData() == nullptr){
         std::cout << "No image data" << std::endl;
     }else{
+        const int* temp_bitmap = getImageData();
         for(int i = 0; i < 80; i++){
-            std::cout << getImageData()[i] << " ";
+            std::cout << temp_bitmap[i] << " ";
         }
         std::cout << std::endl;
     }

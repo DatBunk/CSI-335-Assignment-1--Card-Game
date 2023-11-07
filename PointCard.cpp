@@ -8,8 +8,8 @@ Last Modified: 11/4/2023
  * @post: Construct a new Point Card object
 */
 PointCard::PointCard(){
-    CardType point_tmp = POINT_CARD;
-    setType(point_tmp);
+    CardType point_tmp = POINT_CARD; //set the card type to point card
+    setType(point_tmp); //set the type
 }
 
 /**
@@ -17,15 +17,15 @@ PointCard::PointCard(){
     * For a card to be playable, it has to be drawn and the instruction has to be a valid number
 */
 bool PointCard::isPlayable(){
-    bool can_play = false;
+    bool can_play = false; //initialize the bool to false
     if(getDrawn() == true){
         if(getInstruction() != ""){
-            can_play = true;
+            can_play = true; //set the bool to true
         }
         
     }
 
-    return can_play;
+    return can_play; //return the bool
 }
 
 /**
@@ -44,8 +44,9 @@ void PointCard::Print() const{
     if(getImageData() == nullptr){
         std::cout << "No image data" << std::endl;
     }else{
-        for(int i = 0; i < 5; i++){
-            std::cout << getImageData()[i] << " ";
+        const int* temp_bitmap = getImageData();
+        for(int i = 0; i < 80; i++){
+            std::cout << temp_bitmap[i] << " ";
         }
         std::cout << std::endl;
     }

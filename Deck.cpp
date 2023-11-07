@@ -26,7 +26,7 @@ Deck<CardType>::~Deck(){
 */
 template <typename CardType>
 void Deck<CardType>::AddCard(const CardType& card){
-    cards_.push_back(card);
+    cards_.push_back(card); //add the card to the back of the vector
 }
 
 /**
@@ -37,9 +37,9 @@ void Deck<CardType>::AddCard(const CardType& card){
 template <typename CardType>
 CardType Deck<CardType>::Draw(){
     if(IsEmpty() == false){
-        CardType card = cards_.back();
-        cards_.pop_back();
-        return std::move(card);
+        CardType card = cards_.back(); //get the card at the back of the vector
+        cards_.pop_back(); //remove the card from the back of the vector
+        return std::move(card); //return the card
     }
 }
 
@@ -48,7 +48,7 @@ CardType Deck<CardType>::Draw(){
 */
 template <typename CardType>
 bool Deck<CardType>::IsEmpty() const{
-    return cards_.empty();
+    return cards_.empty(); //return if the vector is empty
 }
 
 /**
@@ -60,8 +60,8 @@ bool Deck<CardType>::IsEmpty() const{
 */
 template <typename CardType>
 void Deck<CardType>::Shuffle(){
-    std::mt19937 rng(2028358904);
-    std::shuffle(cards_.begin(), cards_.end(), rng);
+    std::mt19937 rng(2028358904); //create the random number generator
+    std::shuffle(cards_.begin(), cards_.end(), rng); //shuffle the vector
 }
 
 /**
@@ -69,7 +69,7 @@ void Deck<CardType>::Shuffle(){
 */
 template <typename CardType>
 int Deck<CardType>::getSize() const{
-    return cards_.size();
+    return cards_.size(); //return the size of the vector
 }
 
 /**
@@ -77,5 +77,5 @@ int Deck<CardType>::getSize() const{
 */
 template <typename CardType>
 std::vector<CardType> Deck<CardType>::getDeck() const{
-    return cards_;
+    return cards_; //return the vector of cards
 }

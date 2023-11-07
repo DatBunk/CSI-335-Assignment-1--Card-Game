@@ -8,23 +8,23 @@ Last Modified: 11/4/2023
  @post: Construct a new Player object
 **/
 Player::Player(){
-    score_ = 0;
+    score_ = 0; //score initialized at 0
 }
 
 /**
  @post: Destroy the Player object
 **/
 Player::~Player(){
-    delete actiondeck_;
-    delete pointdeck_;
-    delete opponent_;
+    delete actiondeck_; //delete the action deck
+    delete pointdeck_; //delete the point deck
+    delete opponent_; //delete the opponent
 }
 
 /**
  @return the player's hand
 **/
 const Hand& Player::getHand() const{
-    return hand_;
+    return hand_; //return the hand
 }
 
 /**
@@ -32,14 +32,14 @@ const Hand& Player::getHand() const{
  @param const reference to a hand object
 **/
 void Player::setHand(const Hand& hand){
-    hand_ = hand;
+    hand_ = hand; //set the hand to the given hand, copy constructor
 }
 
 /**
  @return the Player's current score
 **/
 int Player::getScore() const{
-    return score_;
+    return score_; //return the score
 }
 
 /**
@@ -47,7 +47,7 @@ int Player::getScore() const{
  @param: score
 **/
 void Player::setScore(const int& score){
-    score_ = score;
+    score_ = score; //set the score to the given score
 }
 
 /**
@@ -57,22 +57,22 @@ void Player::setScore(const int& score){
  PLAYING ACTION CARD: [instruction]
 **/
 void Player::play(ActionCard&& card){
-    std::cout << "PLAYING ACTION CARD: " << card.getInstruction() << std::endl;
-    hand_.PlayCard();
+    std::cout << "PLAYING ACTION CARD: " << card.getInstruction() << std::endl; //print the instruction
+    hand_.PlayCard(); //play the card
 }
 
 /**
  @post: Draw a point card and place it in the player's hand
 **/
 void Player::drawPointCard(){
-    pointdeck_->Draw();
+    pointdeck_->Draw(); //draw a point card
 }
 
 /**
  @post: Play a point card from the player's hand and update the player's score
 **/
 void Player::playPointCard(){
-    score_ += hand_.PlayCard();
+    score_ += hand_.PlayCard(); //play a point card and update the score
 }
 
 /**
@@ -80,14 +80,14 @@ void Player::playPointCard(){
  @param a pointer to a Player opponent
 **/
 void Player::setOpponent(Player* opponent){
-    opponent_ = opponent;
+    opponent_ = opponent; //set the opponent to the given opponent
 }
 
 /**
  @return: a pointer to the player's opponent
 **/
 Player* Player::getOpponent(){
-    return opponent_;
+    return opponent_; //return the opponent
 }
 
 /**
@@ -95,14 +95,14 @@ Player* Player::getOpponent(){
 @param: A pointer to a deck holding Action cards 
 **/
 void Player::setActionDeck(Deck<ActionCard>* actiondeck){
-    actiondeck_ = actiondeck;
+    actiondeck_ = actiondeck; //set the action deck to the given action deck
 }
 
 /**
 @return: a pointer to the player's action deck
 **/
 Deck<ActionCard>* Player::getActionDeck(){
-    return actiondeck_;
+    return actiondeck_; //return the action deck
 }
 
 /**
@@ -110,13 +110,13 @@ Deck<ActionCard>* Player::getActionDeck(){
  @param: A pointer to a deck holding Point cards
 **/
 void Player::setPointDeck(Deck<PointCard>* pointdeck){
-    pointdeck_ = pointdeck;
+    pointdeck_ = pointdeck; //set the point deck to the given point deck
 }
 
 /**
  @return: a pointer to the player's point deck
 **/
 Deck<PointCard>* Player::getPointDeck(){
-    return pointdeck_;
+    return pointdeck_; //return the point deck
 }
 
