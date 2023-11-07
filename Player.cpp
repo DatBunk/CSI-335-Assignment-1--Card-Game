@@ -9,6 +9,9 @@ Last Modified: 11/4/2023
 **/
 Player::Player(){
     score_ = 0; //score initialized at 0
+    opponent_ = nullptr; //opponent initialized to nullptr
+    actiondeck_ = nullptr; //action deck initialized to nullptr
+    pointdeck_ = nullptr; //point deck initialized to nullptr
 }
 
 /**
@@ -87,7 +90,9 @@ void Player::play(ActionCard&& card){
  @post: Draw a point card and place it in the player's hand
 **/
 void Player::drawPointCard(){
-    pointdeck_->Draw(); //draw a point card
+    if(pointdeck_){
+        hand_.addCard(pointdeck_->Draw()); //add a card to the hand
+    }
 }
 
 /**
