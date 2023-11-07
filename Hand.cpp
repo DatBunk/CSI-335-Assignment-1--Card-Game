@@ -91,8 +91,17 @@ void Hand::Reverse(){
 * @return the points earned from playing the card
 */
 int Hand::PlayCard(){
-    if(isEmpty() == false || cards_.front().isPlayable() == false){
+    if(isEmpty() == true){
+        throw -1; //throw an exception
+    }else{
         std::string str_points = cards_.front().getInstruction(); //get the instruction
+        if(str_points == ""){
+            return 0;
+        }
+        int tmp_points = stoi(str_points); //convert the instruction to an int
+        cards_.pop_front(); //remove the card from the front of the deque
+        return tmp_points; //return the points
+        /*
         bool is_digit = false; //initialize the bool to false
         if(std::isdigit(str_points[0]) == true){
             is_digit = true; //set the bool to true
@@ -103,10 +112,7 @@ int Hand::PlayCard(){
             return tmp_points; //return the points
         }else{
             throw -1; //throw an exception
-        }
-        
-    }else{
-        throw -1; //throw an exception
+        }*/
     }
     
 }
