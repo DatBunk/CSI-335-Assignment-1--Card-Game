@@ -91,7 +91,7 @@ void Hand::Reverse(){
 * @return the points earned from playing the card
 */
 int Hand::PlayCard(){
-    if(isEmpty() == false){
+    if(isEmpty() == false || cards_.front().isPlayable() == false){
         std::string points = cards_.front().getInstruction(); //get the instruction
         if(points == ""){
             return 0; //return 0 if the instruction is empty
