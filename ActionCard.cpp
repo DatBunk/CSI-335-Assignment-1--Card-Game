@@ -23,13 +23,13 @@ ActionCard::ActionCard(){
 */
 bool ActionCard::isPlayable(){
     bool can_play = false; //initialize the bool to false
-    if(getDrawn() == true){
-        if(getInstruction() != ""){
-            can_play = true;
-        }
-        
+    if(getDrawn() == false || getInstruction() == ""){
+        return false; //return false if the card is not drawn or the instruction is empty   
     }
-
+    std::string instruction = getInstruction(); //get the instruction
+    if(instruction == "REVERSE HAND" || instruction == "SWAP HAND WITH OPPONENT" || instruction.find("DRAW") != std::string::npos || instruction.find("PLAY") != std::string::npos){ //if the instruction is reverse hand or swap hand with opponent or draw or play
+        can_play = true; //set the bool to true
+    }
     return can_play; //return the bool
 }
 

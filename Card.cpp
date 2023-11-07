@@ -9,7 +9,9 @@ Last Modified: 11/4/2023
     @post: Destroy the Card object
 **/
 Card::~Card(){
-    delete bitmap_; //delete the bitmap
+    if(bitmap_ != nullptr){
+        delete[] bitmap_; //delete the bitmap
+    }
 }
 
 /**
