@@ -49,7 +49,7 @@ void ActionCard::Print() const{
     if(getImageData() == nullptr){
         std::cout << "No image data" << std::endl;
     }else{
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 546; i++){
             std::cout << getImageData()[i] << " ";
         }
         std::cout << std::endl;
