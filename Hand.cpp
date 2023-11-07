@@ -92,14 +92,21 @@ void Hand::Reverse(){
 */
 int Hand::PlayCard(){
     if(isEmpty() == false || cards_.front().isPlayable() == false){
-        std::string points = cards_.front().getInstruction(); //get the instruction
-        if(points == ""){
-            return 0; //return 0 if the instruction is empty
+        std::string str_points = cards_.front().getInstruction(); //get the instruction
+        bool is_digit = false; //initialize the bool to false
+        if(std::isdigit(str_points[0]) == true){
+            is_digit = true; //set the bool to true
         }
-        int tmp_points = stoi(points); //convert the instruction to an int
-        cards_.pop_front(); //remove the card from the front of the deque
-        return tmp_points; //return the points
+        if(is_digit == true){
+            int tmp_points = stoi(str_points); //convert the instruction to an int
+            cards_.pop_front(); //remove the card from the front of the deque
+            return tmp_points; //return the points
+        }else{
+            throw -1; //throw an exception
+        }
+        
     }else{
         throw -1; //throw an exception
     }
+    
 }

@@ -57,8 +57,30 @@ void Player::setScore(const int& score){
  PLAYING ACTION CARD: [instruction]
 **/
 void Player::play(ActionCard&& card){
+    std::istringstream instruction(card.getInstruction()); //create an istringstream object
+    std::string act; //create a temporary string
+    instruction >> act; //get the first word of the instruction
+
     std::cout << "PLAYING ACTION CARD: " << card.getInstruction() << std::endl; //print the instruction
-    hand_.PlayCard(); //play the card
+    if(card.getInstruction() == "REVERSE HAND"){ //if the instruction is reverse hand
+        hand_.Reverse(); //reverse the hand
+    }else if(card.getInstruction() == "SWAP HAND WITH OPPONENT"){ //if the instruction is swap hand with opponent
+        Hand temp_hand = hand_; //create a temporary hand
+        hand_ = opponent_->getHand(); //set the hand to the opponent's hand
+        opponent_->setHand(temp_hand); //set the opponent's hand to the temporary hand
+    }else if(card.getInstruction() == "DRAW"){
+        int num_cards;
+        instruction >> num_cards; //get the number of cards to draw
+        for(int i = 0; i < num_cards; i++){
+            drawPointCard(); //draw the number of cards
+        }
+    }else if(card.getInstruction() == "PLAY"){
+        int num_cards;
+        instruction >> num_cards; //get the number of cards to draw
+        for(int i = 0; i < num_cards; i++){
+            playPointCard(); //draw the number of cards
+        }
+    }
 }
 
 /**
@@ -72,7 +94,9 @@ void Player::drawPointCard(){
  @post: Play a point card from the player's hand and update the player's score
 **/
 void Player::playPointCard(){
-    score_ += hand_.PlayCard(); //play a point card and update the score
+    if(hand_.isEmpty() == false){
+        score_ += hand_.PlayCard(); //play a point card and update the score
+    }
 }
 
 /**
