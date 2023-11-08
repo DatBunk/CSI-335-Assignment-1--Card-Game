@@ -72,13 +72,14 @@ void Player::play(ActionCard&& card){
         Hand temp_hand = hand_; //create a temporary hand
         hand_ = opponent_->getHand(); //set the hand to the opponent's hand
         opponent_->setHand(temp_hand); //set the opponent's hand to the temporary hand
-    }else if(card.getInstruction() == "DRAW"){
+    }else if(card.getInstruction().find("DRAW") != std::string::npos){
+
         int num_cards;
         instruction >> num_cards; //get the number of cards to draw
         for(int i = 0; i < num_cards; i++){
             drawPointCard(); //draw the number of cards
         }
-    }else if(card.getInstruction() == "PLAY"){
+    }else if(card.getInstruction().find("PLAY") != std::string::npos){
         int num_cards;
         instruction >> num_cards; //get the number of cards to draw
         for(int i = 0; i < num_cards; i++){
