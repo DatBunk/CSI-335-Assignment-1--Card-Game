@@ -39,7 +39,7 @@ CardType Deck<CardType>::Draw(){
     if(IsEmpty() == false){
         CardType card = cards_.back(); //get the card at the back of the vector
         cards_.pop_back(); //remove the card from the back of the vector
-        return std::move(card); //return the card
+        return card; //return the card
     }else{
         throw -1; //throw an error
     }
