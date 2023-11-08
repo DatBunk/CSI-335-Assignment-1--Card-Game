@@ -101,7 +101,7 @@ int Hand::PlayCard(){
         int tmp_points = stoi(str_points); //convert the instruction to an int
         cards_.pop_front(); //remove the card from the front of the deque
         return tmp_points; //return the points
-        /*
+        /* not working for some reason
         bool is_digit = false; //initialize the bool to false
         if(std::isdigit(str_points[0]) == true){
             is_digit = true; //set the bool to true

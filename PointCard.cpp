@@ -44,9 +44,8 @@ void PointCard::Print() const{
     if(getImageData() == nullptr){
         std::cout << "No image data" << std::endl;
     }else{
-        const int* temp_bitmap = getImageData();
         for(int i = 0; i < 80; i++){
-            std::cout << temp_bitmap[i] << " ";
+            std::cout << getImageData()[i] << " ";
         }
         std::cout << std::endl;
     }

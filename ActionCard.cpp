@@ -24,7 +24,7 @@ ActionCard::ActionCard(){
 bool ActionCard::isPlayable(){
     bool can_play = false; //initialize the bool to false
     if(getDrawn() == false || getInstruction() == ""){
-        return false; //return false if the card is not drawn or the instruction is empty   
+        return can_play; //return false if the card is not drawn or the instruction is empty   
     }
     std::string instruction = getInstruction(); //get the instruction
     if(instruction == "REVERSE HAND" || instruction == "SWAP HAND WITH OPPONENT" || instruction.find("DRAW") != std::string::npos || instruction.find("PLAY") != std::string::npos){ //if the instruction is reverse hand or swap hand with opponent or draw or play
@@ -49,9 +49,8 @@ void ActionCard::Print() const{
     if(getImageData() == nullptr){
         std::cout << "No image data" << std::endl;
     }else{
-        const int* temp_bitmap = getImageData();
         for(int i = 0; i < 80; i++){
-            std::cout << temp_bitmap[i] << " ";
+            std::cout << getImageData()[i] << " ";
         }
         std::cout << std::endl;
     }

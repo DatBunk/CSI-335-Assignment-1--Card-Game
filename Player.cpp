@@ -60,11 +60,10 @@ void Player::setScore(const int& score){
  PLAYING ACTION CARD: [instruction]
 **/
 void Player::play(ActionCard&& card){
+    std::cout << "PLAYING ACTION CARD: " << card.getInstruction() << std::endl; //print the instruction
     std::istringstream instruction(card.getInstruction()); //create an istringstream object
     std::string act; //create a temporary string
     instruction >> act; //get the first word of the instruction
-
-    std::cout << "PLAYING ACTION CARD: " << card.getInstruction() << std::endl; //print the instruction
     if(card.getInstruction() == "REVERSE HAND"){ //if the instruction is reverse hand
         hand_.Reverse(); //reverse the hand
     }else if(card.getInstruction() == "SWAP HAND WITH OPPONENT"){ //if the instruction is swap hand with opponent
