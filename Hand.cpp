@@ -1,6 +1,6 @@
 /*
 Ildefonso Marrero
-Last Modified: 11/4/2023
+Last Modified: 11/7/2023
 */
 #include "Hand.hpp"
 

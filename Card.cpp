@@ -1,6 +1,6 @@
 /*
 Ildefonso Marrero
-Last Modified: 11/4/2023
+Last Modified: 11/7/2023
 */
 #include "Card.hpp"
 
@@ -57,13 +57,16 @@ Card& Card::operator=(const Card& rhs){
  @return this Card object
 **/
 Card& Card::operator=(Card&& rhs){
-    cardType_ = rhs.cardType_; //set the card type
-    instruction_ = std::move(rhs.instruction_); //set the instruction
-    bitmap_ = rhs.bitmap_; //set the bitmap
-    drawn_ = rhs.drawn_; //set the drawn status
-    rhs.bitmap_ = nullptr; //set the bitmap to null
-
-    return *this; //return this object
+    if(this == &rhs){
+        return *this; //return this object
+    }else{
+        cardType_ = rhs.cardType_; //set the card type
+        instruction_ = std::move(rhs.instruction_); //set the instruction
+        bitmap_ = rhs.bitmap_; //set the bitmap
+        drawn_ = rhs.drawn_; //set the drawn status
+        rhs.bitmap_ = nullptr; //set the bitmap to null
+        return *this; //return this object
+    }
 }
 
 /**
@@ -81,10 +84,8 @@ std::string Card::getType() const{
     if(cardType_ == CardType::POINT_CARD){
         return "POINT_CARD"; //return the string representation of the point card type
     }
-    else if(cardType_ == CardType::ACTION_CARD){
+    else{
         return "ACTION_CARD"; //return the string representation of the action card type
-    }else{
-        return "INVALID"; //return invalid if the card type is invalid
     }
 }
 
