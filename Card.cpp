@@ -30,13 +30,10 @@ Card::Card(const Card& rhs){
 **/
 Card::Card(Card&& rhs){
     cardType_ = rhs.cardType_; //set the card type
-    instruction_ = rhs.instruction_; //set the instruction
+    instruction_ = std::move(rhs.instruction_); //set the instruction
     bitmap_ = rhs.bitmap_; //set the bitmap
     drawn_ = rhs.drawn_; //set the drawn status
-    rhs.cardType_ = CardType::POINT_CARD; //set the card type to point card
-    rhs.instruction_ = ""; //set the instruction to empty
     rhs.bitmap_ = nullptr; //set the bitmap to null
-    rhs.drawn_ = false; //set the drawn status to false
 }
 
 /**
@@ -44,12 +41,15 @@ Card::Card(Card&& rhs){
  @return this Card object
 **/
 Card& Card::operator=(const Card& rhs){
-    cardType_ = rhs.cardType_; //set the card type
-    instruction_ = rhs.instruction_; //set the instruction
-    bitmap_ = rhs.bitmap_; //set the bitmap
-    drawn_ = rhs.drawn_; //set the drawn status
-
-    return *this; //return this object
+    if(this == &rhs){
+        return *this; //return this object
+    }else{
+        cardType_ = rhs.cardType_; //set the card type
+        instruction_ = rhs.instruction_; //set the instruction
+        bitmap_ = rhs.bitmap_; //set the bitmap
+        drawn_ = rhs.drawn_; //set the drawn status
+        return *this; //return this object
+    }
 }
 
 /**
@@ -58,13 +58,10 @@ Card& Card::operator=(const Card& rhs){
 **/
 Card& Card::operator=(Card&& rhs){
     cardType_ = rhs.cardType_; //set the card type
-    instruction_ = rhs.instruction_; //set the instruction
+    instruction_ = std::move(rhs.instruction_); //set the instruction
     bitmap_ = rhs.bitmap_; //set the bitmap
     drawn_ = rhs.drawn_; //set the drawn status
-    rhs.cardType_ = CardType::POINT_CARD; //set the card type to point card
-    rhs.instruction_ = ""; //set the instruction to empty
     rhs.bitmap_ = nullptr; //set the bitmap to null
-    rhs.drawn_ = false; //set the drawn status to false
 
     return *this; //return this object
 }
@@ -73,8 +70,6 @@ Card& Card::operator=(Card&& rhs){
 @post: Construct a new Card object  
 **/
 Card::Card(){
-    cardType_ = CardType::POINT_CARD; //set the card type to point card
-    instruction_ = ""; //set the instruction to empty
     bitmap_ = nullptr; //set the bitmap to null
     drawn_ = false; //set the drawn status to false
 }
@@ -86,8 +81,10 @@ std::string Card::getType() const{
     if(cardType_ == CardType::POINT_CARD){
         return "POINT_CARD"; //return the string representation of the point card type
     }
-    else{
+    else if(cardType_ == CardType::ACTION_CARD){
         return "ACTION_CARD"; //return the string representation of the action card type
+    }else{
+        return "INVALID"; //return invalid if the card type is invalid
     }
 }
 
